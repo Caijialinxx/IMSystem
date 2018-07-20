@@ -10,7 +10,7 @@ var express = require('express'),
 app.use('/', express.static(__dirname + '/www'));
 
 //bind the server to the 3000 port
-server.listen(3000);
+server.listen(process.env.PORT || 3000);
 console.log('started on port 3000');
 
 // 监听客户端连接，回调函数会传递本次连接的socket
