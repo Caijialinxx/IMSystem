@@ -1,0 +1,5 @@
+node_modules
+
+package-lock.json
+
+heroku部署教程.md
