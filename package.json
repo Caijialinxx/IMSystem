@@ -1,5 +1,5 @@
 {
-  "name": "CA Chat Room",
+  "name": "ca-chat-room",
   "description": "A Realtime Chat Web Application",
   "version": "0.4.0",
   "main": "server.js",
