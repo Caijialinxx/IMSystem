@@ -14,7 +14,7 @@ var CA = function () {
 CA.prototype = {
   init: function () {
     var that = this;
-    this.socket = io.connect('http://127.0.0.1:3000');
+    this.socket = io.connect();
 
     // BEGIN 监听服务端 —— 判断登录状态
     this.socket.on('connect', function () {
