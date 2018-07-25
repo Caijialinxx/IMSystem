@@ -5,6 +5,14 @@
   list-style-type: none;
   font-family: sans-serif;
   border: none;
+  box-sizing: border-box;
+}
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 .clearfix::after {
   content: '';
@@ -12,7 +20,7 @@
   clear: both;
 }
 a {
-  color: #ff6e40;
+  color: #404956;
 }
 
 .background {
@@ -26,12 +34,6 @@ a {
   background-image: url(../img/bg.jpg);
   background-position: center center;
   background-size: cover;
-  filter: blur(32px);
-}
-.background > .mask {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.75);
 }
 
 /* BEGIN robot */
@@ -61,41 +63,41 @@ dl li {
 
 /* BEGIN login */
 .loginWrapper {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   margin: auto;
-  width: 320px;
-  height: 480px;
+  padding: 40px 46px;
   background-color: #efefef;
   border-radius: 4px;  -moz-border-radius: 4px;  -webkit-border-radius: 4px;
   box-shadow: 0 2px 10px #999;  -moz-box-shadow: #999 0 2px 10px;  -webkit-box-shadow: #999 0 2px 10px;
   text-align: center;
-  color: #000;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.loginWrapper .logo{
-  margin: 44px auto;
-  width: 180px;
+.loginWrapper .logo {
+  margin-bottom: 44px;
+  width: 150px;
   text-align: center;
   cursor: default;
   user-select: none;
 }
 .loginWrapper .logo > svg{
-  width: 150px;
-  height: 150px;
-  fill: #ff6e40;
+  width: 100%;
+  height: 100%;
+  fill: #404956;
   margin: 10px auto;
 }
 .loginWrapper .nicknameWrapper > a#giveName{
-  display: inline-block;
-  position: relative;
   font-size: 12px;
 }
 .loginWrapper .nicknameWrapper > .info{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: -2px;
   color: red;
+  text-align: center;
   font-size: 12px;
   visibility: hidden;
   transition: all 0.3s;
@@ -103,92 +105,71 @@ dl li {
 .loginWrapper .nicknameWrapper > .nicknameInput, .loginWrapper .nicknameWrapper > .loginBtn{
   padding: 8px;
   border-radius: 20px;
-  display: inline-block;
-  margin: 6px;
+  display: block;
+  margin: 16px 0;
   width: 230px;
   height: 42px;
+  transition: all 0.2s;
 }
 .loginWrapper .nicknameWrapper > .nicknameInput{
   border: 1px solid #999;
   box-sizing: border-box;
   text-align: center;
-  transition: all 0.2s;
 }
 .loginWrapper .nicknameWrapper > .nicknameInput:focus{
   box-shadow: 0 2px 10px #ccc;
 }
 .loginWrapper .nicknameWrapper > .loginBtn{
   cursor: pointer;
-  background-color: #ff6e40;
+  background-color: #404956;
   font-size: 16px;
-  transition: all 0.2s;
+  color: white;
 }
 .loginWrapper .nicknameWrapper > .loginBtn:hover{
-  background-color: #ff8a65;
+  background-color: #48566b;
   box-shadow: 0 2px 10px #ccc;
 }
 /* END login */
 
 .main {
   display: none;
-  position:absolute;
-  bottom:0;
-  top:0;
-  right:0;
-  left:0;
-  margin:auto;
-  width: 860px;
+  width: 900px;
   height: 100%;
-  min-height: 580px;
+  min-height: 400px;
   max-height: 700px;
-  background-color: #fff2edab;
+  position: relative;
 }
 /* BEGIN userWrapper */
 .main > .userWrapper {
-  position: absolute;
-  float: left;
-  width: 25%;
-  height: 100%;
-  min-width: 200px;
-  box-sizing: border-box;
-  background-color: #ffffff33;
+  position: relative;
+  width: 28%;
+  background-color: #2e3238;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.main > .userWrapper * {
+  color: white;
 }
 .main > .userWrapper h1#userName {
   padding: 10px;
   user-select: none;
 }
-.main > .userWrapper > span {
-  padding: 10px;
-}
-/* BEGIN searchBox */
-.searchBox {
-  background-color: #ffffff44;
-  border-radius: 3px;
-  padding: 6px;
-  margin: 10px;
-}
-.searchBox input {
-  width: 88%;
-  background-color: transparent;
-  padding: 4px;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-.searchBox svg {
-  cursor: pointer;
-}
-/* END searchBox */
 /* BEGIN alert */
+.alert, .alert * {
+  color: white;
+}
 .alert {
+  z-index: 1;
   position: absolute;
   float: left;
   top: -999px;
-  left: 210px;
+  left: 240px;
   opacity: 0;
   padding: 10px;
   width: 220px;
   border-radius: 6px;
-  background-color: #ffab91;
+  background-color: #404956;
   box-shadow: -1px 1px 2px rgba(0,0,0,0.3);
 }
 .alert::after {
@@ -196,7 +177,7 @@ dl li {
   position: absolute;
   top: 20px;
   left: -8px;
-  border: 8px solid #ffab91;
+  border: 8px solid #404956;
   border-top-color: transparent;
   border-right-color: transparent;
   border-radius: 4px;
@@ -206,12 +187,12 @@ dl li {
 .alert #closeBtn{
   cursor: pointer;
   position: absolute;
-  top: 12px;
-  right: 6px;
-  padding: 6px;
+  top: 8px;
+  right: 8px;
   width: 1em;
   height: 1em;
   font-size: 12px;
+  line-height: 1em;
 }
 .alert .info > .friendName {
   word-break: break-all;
@@ -223,7 +204,7 @@ dl li {
 .alert .info > .status {
   font-size: 12px;
   font-weight: normal;
-  color: #444;
+  color: #ccc;
 }
 .alert .action {
   background-color: rgba(255, 255, 255, 0.2);
@@ -245,52 +226,31 @@ dl li {
   box-sizing: border-box;
 }
 /* END alert */
-
-/* BEGIN group */
-.joinGroup {
-  background-color: #ffffff44;
-  border-radius: 3px;
-  margin: 10px;
-  padding: 6px;
-}
-.joinGroup > .action {
-  width: 88%;
-  box-sizing: border-box;
-  display: inline-block;
-  white-space: nowrap;
-}
-.action > #create, .action #join {
-  cursor: pointer;
-  width: 50%;
-  background-color: transparent;
-  transition: all 0.3s;
-}
-.action > #join {
-  border-left: 1px solid #ddd;
-}
-.action > #create:hover, .action > #join:hover {
-  color: #ff6e40;
+/* BEGIN pwdBox */
+.pwdBox, .pwdBox * {
+  color: white
 }
 .pwdBox {
+  z-index: 1;
   position: absolute;
   float: left;
   top: -999px;
-  left: 210px;
+  left: 240px;
+  opacity: 0;
   padding: 10px;
   width: 220px;
-  opacity: 0;
+  border-radius: 6px;
+  background-color: #404956;
+  box-shadow: -1px 1px 2px rgba(0,0,0,0.3);
   font-size: 12px;
   text-align: center;
-  border-radius: 6px;
-  background-color: #ffab91;
-  box-shadow: -1px 1px 2px rgba(0,0,0,0.3);
 }
 .pwdBox::after {
   content: '';
   position: absolute;
   top: 20px;
   left: -8px;
-  border: 8px solid #ffab91;
+  border: 8px solid #404956;
   border-top-color: transparent;
   border-right-color: transparent;
   border-radius: 4px;
@@ -300,13 +260,17 @@ dl li {
 .pwdBox > #cancelBtn {
   cursor: pointer;
   position: absolute;
-  top: 10px;
-  right: 6px;
+  top: 8px;
+  right: 8px;
+  width: 1em;
+  height: 1em;
+  font-size: 12px;
+  line-height: 1em;
 }
 .pwdBox > .intro {
   margin: 0 auto;
   width: 90%;
-  color: #555;
+  color: #ccc;
 }
 .pwdBox > #pwd {
   margin: 6px;
@@ -320,7 +284,8 @@ dl li {
   border-radius: 2px;
   background-color: transparent;
   text-align: center;
-  box-shadow: 0px 1px 1px rgba(0,0,0,0.3);
+  box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.3);
+  margin: 0px 2px;
 }
 .pwdBox > .info {
   display: none;
@@ -331,7 +296,7 @@ dl li {
   width: 22px;
   font-size: 12px;
   border-radius: 2px;
-  background-color: #ffffffe0;
+  background-color: #ffffff44;
 }
 .pwdBox > button {
   cursor: pointer;
@@ -340,34 +305,81 @@ dl li {
   padding: 4px;
   box-sizing: border-box;
   border-radius: 2px;
-  background-color: #ff6e4066;
+  background-color: #48566b;
+}
+/* END pwdBox */
+
+/* BEGIN searchBox */
+.searchBox {
+  background-color: #ffffff22;
+  border-radius: 3px;
+  padding: 10px 6px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+.searchBox input {
+  width: 100%;
+  background-color: transparent;
+  padding-left: 6px;
+}
+.searchBox svg {
+  cursor: pointer;
+}
+/* END searchBox */
+/* BEGIN group */
+.joinGroup {
+  background-color: #ffffff22;
+  border-radius: 3px;
+  margin: 10px;
+  padding: 10px 6px;
+  display: flex;
+  align-items: center;
+}
+.joinGroup > .action {
+  width: 100%;
+  display: flex;
+}
+.action > #create, .action #join {
+  cursor: pointer;
+  width: 50%;
+  background-color: transparent;
+  transition: all 0.3s;
+}
+.action > #join {
+  border-left: 1px solid #ddd;
+}
+.action > #create:hover, .action > #join:hover {
+  color: #ff6e40;
 }
 /* END group */
 /* BEGIN usersList */
 ul.usersList {
-  border-top: 1px solid #ff6e40;
+  margin-right: -17px;
+  position: relative;
+  border-top: 1px solid #404956;
+  overflow: auto;
 }
 ul.usersList li {
   padding: 10px;
-  height: 50px;
-  border-bottom: 1px solid #ff6e40;
+  height: 65px;
+  border-bottom: 1px solid #404956;
 }
 ul.usersList li.active {
-  background-color: #ff6e4011;
+  background-color: #4f5b6d;
   font-weight: bold;
   font-size: 18px;
 }
 ul.usersList li.unread {
-  background-color: #ff6e4099;
+  background-color: #ff6e40aa;
 }
 /* END usersList */
 /* END userWrapper */
 
 /* BEGIN chatWrapper */
 .main > .chatWrapper {
-  float: right;
-  width: 75%;
-  height: 100%;
+  width: 72%;
+  background-color: #eee;
 }
 .chatWrapper .head {
   height: 6%;
@@ -554,5 +566,6 @@ a.fileContent.otherFile {
 /* END chatWrapper */
 
 footer {
-  text-align: center;
+  margin: 6px auto;
+  font-size: 14px;
 }

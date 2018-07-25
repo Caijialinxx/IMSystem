@@ -33,7 +33,7 @@ CA.prototype = {
     this.socket.on('loginSuccessfully', function (nickname) {
       document.title = 'CA | ' + $('#nicknameInput')[0].value;
       $('#loginWrapper').css('display', 'none');
-      $('#main').css('display', 'block');
+      $('#main').css('display', 'flex');
       $('#userName')[0].textContent = nickname;
       $('#searchBox input').focus();
       that._robot('welcome');
@@ -83,8 +83,8 @@ CA.prototype = {
       $('#pwd').css('display', 'block');
       $('input#duration').attr('disabled', 'disabled');
       $('#pwd input').attr('disabled', 'disabled');
-      $('input#duration').css('background-color', '#ffffff44');
-      $('.pwdBox').animate({ top: '110' }, 0).animate({ left: '220', opacity: 1 }, 200);
+      $('input#duration').css('background-color', '#ffffff11');
+      $('.pwdBox').animate({ top: '114' }, 0).animate({ left: '250', opacity: 1 }, 200);
     });
     this.socket.on('roomBroadcast', function (nickname, type, roomName, time) {
       var msg = nickname + (type === 'joined' ? ' joined' : ' left');
@@ -96,11 +96,11 @@ CA.prototype = {
     });
     this.socket.on('hadJoined', function () {
       $('.pwdBox .intro')[0].textContent = 'You had joined this room.';
-      $('.pwdBox').animate({ top: '130' }, 0).animate({ left: '220', opacity: 1 }, 200);
+      $('.pwdBox').animate({ top: '114' }, 0).animate({ left: '250', opacity: 1 }, 200);
     });
     this.socket.on('roomNotFound', function () {
       $('.pwdBox .intro')[0].textContent = 'Room can not find.';
-      $('.pwdBox').animate({ top: '130' }, 0).animate({ left: '220', opacity: 1 }, 200);
+      $('.pwdBox').animate({ top: '114' }, 0).animate({ left: '250', opacity: 1 }, 200);
     });
     // END group
 
@@ -132,11 +132,11 @@ CA.prototype = {
       $('#confirm')[0].textContent = 'Confirm';
       $('#pwd').css('display', 'none');
       $('.pwdBox .info').css('display', 'block');
-      $('input#duration').css('background-color', '#ffffffe0');
+      $('input#duration').css('background-color', '#ffffff44');
       $('input#duration').removeAttr('disabled');
       $('input#duration').focus();
       $('input#duration')[0].value = '';
-      $('.pwdBox').animate({ top: '130' }, 0).animate({ left: '220', opacity: 1 }, 200);
+      $('.pwdBox').animate({ top: '114' }, 0).animate({ left: '250', opacity: 1 }, 200);
     });
     $('#join').click(function () {
       $('.pwdBox .intro')[0].textContent = 'Input password to join a room.';
@@ -150,14 +150,14 @@ CA.prototype = {
       }
       $('input#duration').attr('disabled', 'disabled');
       $('input#first').focus();
-      $('.pwdBox').animate({ top: '130' }, 0).animate({ left: '220', opacity: 1 }, 200);
+      $('.pwdBox').animate({ top: '114' }, 0).animate({ left: '250', opacity: 1 }, 200);
     });
     // 鼠标操作
     $('#confirm').click(function (e) {
       that._displayPwdBox();
     });
     $('#cancelBtn').click(function () {
-      $('.pwdBox').animate({ left: '210', opacity: 0 }, 200).animate({ top: '-999' }, 0);
+      $('.pwdBox').animate({ left: '240', opacity: 0 }, 200).animate({ top: '-999' }, 0);
     });
     // 键盘操作
     $('.pwdBox input').keydown(function (e) {
@@ -205,10 +205,10 @@ CA.prototype = {
 
     // BEGIN search
     $('#searchBox').focusin(function () {
-      $('#searchBox').css('background-color', '#ffffffdd');
+      $('#searchBox').css('background-color', '#ffffff99');
     });
     $('#searchBox').focusout(function () {
-      $('#searchBox').css('background-color', '#ffffff44');
+      $('#searchBox').css('background-color', '#ffffff22');
     });
     $('#searchBox svg').click(function () {
       if ($('#searchBox input')[0].value !== '') { that._search(); }
@@ -223,14 +223,13 @@ CA.prototype = {
 
     // BEGIN add
     $('#alert #closeBtn').click(function () {
-      $('#alert').animate({ left: '210', opacity: 0 }, 200).animate({ top: '-999' }, 0);
-      // that.socket.emit('reject', $('#alert .friendName')[0].textContent);
+      $('#alert').animate({ left: '240', opacity: 0 }, 200).animate({ top: '-999' }, 0);
     });
     $('#alert input').keypress(function (e) {
       if (e.keyCode === 13) {
         e.preventDefault();
         that._add();
-        $('#alert').animate({ left: '210', opacity: 0 }, 200).animate({ top: '-999' }, 0);
+        $('#alert').animate({ left: '240', opacity: 0 }, 200).animate({ top: '-999' }, 0);
       }
     });
     $('#alert button').click(function (e) {
@@ -243,7 +242,7 @@ CA.prototype = {
         that.socket.emit('accept', acceptedFriendName);
         that._displayMsgBox('isNewFriend', acceptedFriendName);
       }
-      $('#alert').animate({ left: '210', opacity: 0 }, 200).animate({ top: '-999' }, 0);
+      $('#alert').animate({ left: '240', opacity: 0 }, 200).animate({ top: '-999' }, 0);
     });
     // END add
 
@@ -383,14 +382,14 @@ CA.prototype = {
     alert('已向 ' + friendName + ' 发送请求！')
   },
   _displayAlert: function (type, name, authentication) {
-    $('#alert').animate({ top: '62' }, 0).animate({ left: '218', opacity: 1 }, 200);
+    $('#alert').animate({ top: '62' }, 0).animate({ left: '250', opacity: 1 }, 200);
     $('#alert input').focus();
     $('#alert .friendName')[0].textContent = name;
     if (type === 'not found') {
       $('#alert .status')[0].textContent = 'Cannot Found';
       $('#alert .action').css('display', 'none');
       setTimeout(function () {
-        $('#alert').animate({ left: '210', opacity: 0 }, 200).animate({ top: '-999' }, 0);
+        $('#alert').animate({ left: '240', opacity: 0 }, 200).animate({ top: '-999' }, 0);
       }, 1500);
       $('#searcbBox input').focus();
     }
@@ -405,7 +404,7 @@ CA.prototype = {
       $('#alert .status')[0].textContent = "is ME";
       $('#alert .action').css('display', 'none');
       setTimeout(function () {
-        $('#alert').animate({ left: '210', opacity: 0 }, 200).animate({ top: '-999' }, 0);
+        $('#alert').animate({ left: '240', opacity: 0 }, 200).animate({ top: '-999' }, 0);
       }, 1500);
       $('#searcbBox input').focus();
     }
@@ -420,7 +419,7 @@ CA.prototype = {
       $('#alert .status')[0].textContent = "had added";
       $('#alert .action').css('display', 'none');
       setTimeout(function () {
-        $('#alert').animate({ left: '210', opacity: 0 }, 200).animate({ top: '-999' }, 0);
+        $('#alert').animate({ left: '250', opacity: 0 }, 200).animate({ top: '-999' }, 0);
       }, 1500);
       this._displayMsgBox('isOld', 'User_' + searchContent);
     }
@@ -448,7 +447,7 @@ CA.prototype = {
       }
       this.socket.emit('joinRoom', pwd);
     }
-    $('.pwdBox').animate({ left: '210', opacity: 0 }, 200).animate({ top: '-999' }, 0);
+    $('.pwdBox').animate({ left: '240', opacity: 0 }, 200).animate({ top: '-999' }, 0);
   },
   _displayMsgBox: function (type, nameOrId) {
     var name, id;
