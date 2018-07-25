@@ -380,20 +380,22 @@ ul.usersList li.unread {
 .main > .chatWrapper {
   width: 72%;
   background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
-.chatWrapper .head {
-  height: 6%;
-  line-height: 160%;
-  box-sizing: border-box;
+.chatWrapper header {
+  flex-shrink: 0;
   text-align: center;
   font-size: 22px;
-  background-color: #ffffff50;
+  padding: 6px;
+  border-bottom: 1px solid #ddd;
 }
 /* BEGIN messageBox */
 .messageBox {
-  height: 64%;
+  height: 70%;
+  /* flex-grow: 1; */
   overflow-y: auto;
-  box-sizing: border-box;
 }
 /* BEGIN msgToDisplay */
 .messageBox .msgToDisplay {
@@ -473,13 +475,14 @@ a.fileContent.otherFile {
 /* BEGIN controllers */
 .controllers{
   height: 30%;
-  min-height: 180px;
-  border-top: 1px solid #ffffff33;
-  box-sizing: border-box;
+  border-top: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
 }
 /* toolsWrapper editWrapper sendWrapper */
 .controllers > div {
-  padding: 4px 10px;
+  padding: 6px 10px;
+  flex-shrink: 0;
 }
 /* BEGIN toolsWrapper */
 .toolsWrapper > div {
@@ -501,10 +504,9 @@ a.fileContent.otherFile {
   display: none;
   position: relative;
   float: left;
-  top: -200px;
+  top: -206px;
   left: -10px;
-  width: 280px;
-  height: 140px;
+  width: 304px;
   border-radius: 6px;
   padding: 12px;
   background-color: #fff3e0;
@@ -514,7 +516,7 @@ a.fileContent.otherFile {
 .emojisBox::after {
   content: '';
   position: absolute;
-  top: 158px;
+  top: 163px;
   left: 16px;
   transform: rotate(-45deg);
   border: 6px solid #fff3e0;
@@ -527,6 +529,7 @@ a.fileContent.otherFile {
   width: 25px;
   height: 25px;
   transition: all 0.2s;
+  box-sizing: content-box;
 }
 .emojisBox > svg:hover {
   transform: scale(1.5);
@@ -534,28 +537,29 @@ a.fileContent.otherFile {
 /* END emoji */
 /* END toolsWrapper */
 /* BEGIN editWrapper */
-.editWrapper{
-  height: 48%;
-  min-height: 80px;
+.editWrapper {
+  flex-shrink: 1;         /* 编辑区域高度溢出时，“缩小”此区域 */
+  padding: 0 10px;
   overflow-y: auto;
+  flex-grow: 1;
 }
 .editWrapper > pre {
-  height: 100%;
   white-space: pre-wrap;
   word-wrap: break-word;
-  overflow-x:  hidden;
   overflow-y: auto;
 }
 /* END editWrapper */
 /* BEGIN sendWrapper */
+.sendWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .sendWrapper span {
-  float: left;
   color: #555;
   font-size: 13px;
-  padding: 5px 0;
 }
 .sendWrapper .sendBtn {
-  float: right;
   background-color: #eee;
   padding: 5px 10px;
   border-radius: 4px;
