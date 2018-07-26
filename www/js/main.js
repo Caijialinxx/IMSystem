@@ -225,18 +225,11 @@ CA.prototype = {
     $('#alert #closeBtn').click(function () {
       $('#alert').animate({ left: '240', opacity: 0 }, 200).animate({ top: '-999' }, 0);
     });
-    $('#alert input').keypress(function (e) {
-      if (e.keyCode === 13) {
-        e.preventDefault();
+    $('#alert form').submit(function (e) {
+      e.preventDefault();
+      if (e.target[1].value === 'Add') {
         that._add();
-        $('#alert').animate({ left: '240', opacity: 0 }, 200).animate({ top: '-999' }, 0);
-      }
-    });
-    $('#alert button').click(function (e) {
-      if (e.target.textContent === 'Add') {
-        that._add();
-      }
-      else if (e.target.textContent === 'Accept') {
+      } else if (e.target[1].value === 'Accept') {
         var acceptedFriendName = $('#alert .friendName')[0].textContent;
         // 向服务器发送“请求通过”消息，参数为发送请求者的nickname
         that.socket.emit('accept', acceptedFriendName);
@@ -373,13 +366,13 @@ CA.prototype = {
   },
   _add: function () {
     var friendName = $('#alert .friendName')[0].textContent,
-      auth = $('#alert input')[0].value;
+      auth = $('#alert input[type="text"]')[0].value;
     this.socket.emit('add', friendName, auth);
     alert('已向 ' + friendName + ' 发送请求！')
   },
   _displayAlert: function (type, name, authentication) {
     $('#alert').animate({ top: '62' }, 0).animate({ left: '250', opacity: 1 }, 200);
-    $('#alert input').focus();
+    $('#alert input[type="text"]').focus();
     $('#alert .friendName')[0].textContent = name;
     if (type === 'not found') {
       $('#alert .status')[0].textContent = 'Cannot Found';
@@ -392,9 +385,9 @@ CA.prototype = {
     else if (type === 'not friend') {
       $('#alert .status')[0].textContent = "Not your friend";
       $('#alert .action').css('display', 'flex');
-      $('#alert input').removeAttr('disabled');
-      $('#alert input')[0].value = "I'm " + $('#userName')[0].textContent;
-      $('#alert button')[0].textContent = 'Add';
+      $('#alert input[type="text"]').removeAttr('disabled');
+      $('#alert input[type="text"]')[0].value = "I'm " + $('#userName')[0].textContent;
+      $('#alert input[type="submit"]')[0].value = 'Add';
     }
     else if (type === 'self') {
       $('#alert .status')[0].textContent = "is ME";
@@ -407,9 +400,9 @@ CA.prototype = {
     else if (type === 'addReq') {
       $('#alert .status')[0].textContent = "Friend Request";
       $('#alert .action').css('display', 'flex');
-      $('#alert input').attr('disabled', 'disabled');
-      $('#alert input')[0].value = authentication;
-      $('#alert button')[0].textContent = 'Accept';
+      $('#alert input[type="text"]').attr('disabled', 'disabled');
+      $('#alert input[type="text"]')[0].value = authentication;
+      $('#alert input[type="submit"]')[0].value = 'Accept';
     }
     else if (type === 'had added') {
       $('#alert .status')[0].textContent = "had added";
