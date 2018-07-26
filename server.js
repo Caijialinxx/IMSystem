@@ -11,13 +11,11 @@ app.use('/', express.static(__dirname + '/www'));
 
 //bind the server to the 3000 port
 server.listen(process.env.PORT || 3000);
-console.log('started on port 3000');
 
 // 监听客户端连接，回调函数会传递本次连接的socket
 io.sockets.on('connection', function (socket) {
   // new user login
   socket.on('login', function (nickname) {
-    var time = new Date().toTimeString().substr(0, 5);
     if (users.hasOwnProperty(nickname)) {
       socket.emit('nicknameExisted');         // 检查用户名唯一
     } else if (nickname === 'Robot' || nickname.substr(0, 5) === 'Room-' || nickname.indexOf('<') > -1 || nickname.indexOf('>') > -1 || nickname.indexOf('/') > -1) {
@@ -31,7 +29,6 @@ io.sockets.on('connection', function (socket) {
   });
   //user log out
   socket.on('disconnect', function () {
-    var time = new Date().toTimeString().substr(0, 5);
     if (socket.nickname !== undefined) {
       delete users[socket.nickname];
       users.length--;
@@ -123,7 +120,7 @@ io.sockets.on('connection', function (socket) {
         room.length++;
       }
       var roomMember = room[roomName];
-      socket.emit('roomJoined', socket.nickname, roomName);
+      socket.emit('roomJoined', roomName);
       for (var i = 0; i < roomMember.length; i++) {
         io.sockets.socket(users[roomMember[i]]).emit('roomBroadcast', socket.nickname, 'joined', roomName, time);
       }

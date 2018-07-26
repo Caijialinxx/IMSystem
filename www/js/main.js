@@ -40,8 +40,8 @@ CA.prototype = {
       $('li#Robot').addClass('active');
       $('.head')[0].textContent = 'Robot';
     });
-    this.socket.on('error', function (err) {
-      alert("ERROR!");
+    this.socket.on('error', function () {
+      alert("ERROR: Maybe socket.io can not work!");
       $('#logo svg use')[0].attributes[0].value = '#icon-error';
     });
     // END 监听服务端 —— 判断登录状态
@@ -91,7 +91,7 @@ CA.prototype = {
       that._displayNewMsg('text', 'system', time, '#888', msg);
       that._setSession('text', 'system', time, '#888', msg, roomName);
     });
-    this.socket.on('roomJoined', function (nickname, roomName) {
+    this.socket.on('roomJoined', function (roomName) {
       that._displayMsgBox('isNewRoom', roomName);
     });
     this.socket.on('hadJoined', function () {
@@ -153,7 +153,7 @@ CA.prototype = {
       $('.pwdBox').animate({ top: '118' }, 0).animate({ left: '250', opacity: 1 }, 200);
     });
     // 鼠标操作
-    $('#confirm').click(function (e) {
+    $('#confirm').click(function () {
       that._displayPwdBox();
     });
     $('#cancelBtn').click(function () {
@@ -246,24 +246,20 @@ CA.prototype = {
     });
     // END add
 
-
-    ///////////////////////////////////////////////////
     $('#usersList').click(function (e) {
       e.target.className = 'active';
       // 获取到点击到的li的父元素label的for属性“User_xxx”
       var id = e.target.parentElement.htmlFor;
       that._displayMsgBox('isOld', id);
     });
-    ///////////////////////////////////////////////////
-
 
     // BEGIN listen to controllers
-    $('.controllers').click(function (e) {
+    $('.controllers').click(function () {
       $('.controllers').css('background-color', '#fff');
       $('.editArea').focus();
       $('.editArea').css('color', $('.changeColor')[0].value);
     });
-    $('.controllers').focusout(function (e) {
+    $('.controllers').focusout(function () {
       $('.controllers').css('background-color', '#eee');
     });
     // BEGIN emoji
@@ -352,7 +348,6 @@ CA.prototype = {
       var reply = json["Robot"], msg;
       if (keyword === 'welcome') { msg = $('#userName')[0].innerHTML + '，' + reply.welcome; }
       else if (keyword === 'help') { msg = reply.help; }
-      // else if (keyword === 'weather') { msg = reply.weather; }
       else {
         if (typeof keyword === 'object') {
           msg = keyword.results[0].location.name
