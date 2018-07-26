@@ -88,6 +88,9 @@ dl li {
   fill: #404956;
   margin: 10px auto;
 }
+.loginWrapper .nicknameWrapper {
+  position: relative;
+}
 .loginWrapper .nicknameWrapper > a#giveName{
   font-size: 12px;
 }
