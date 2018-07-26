@@ -84,7 +84,7 @@ CA.prototype = {
       $('input#duration').attr('disabled', 'disabled');
       $('#pwd input').attr('disabled', 'disabled');
       $('input#duration').css('background-color', '#ffffff11');
-      $('.pwdBox').animate({ top: '114' }, 0).animate({ left: '250', opacity: 1 }, 200);
+      $('.pwdBox').animate({ top: '118' }, 0).animate({ left: '250', opacity: 1 }, 200);
     });
     this.socket.on('roomBroadcast', function (nickname, type, roomName, time) {
       var msg = nickname + (type === 'joined' ? ' joined' : ' left');
@@ -96,11 +96,11 @@ CA.prototype = {
     });
     this.socket.on('hadJoined', function () {
       $('.pwdBox .intro')[0].textContent = 'You had joined this room.';
-      $('.pwdBox').animate({ top: '114' }, 0).animate({ left: '250', opacity: 1 }, 200);
+      $('.pwdBox').animate({ top: '118' }, 0).animate({ left: '250', opacity: 1 }, 200);
     });
     this.socket.on('roomNotFound', function () {
       $('.pwdBox .intro')[0].textContent = 'Room can not find.';
-      $('.pwdBox').animate({ top: '114' }, 0).animate({ left: '250', opacity: 1 }, 200);
+      $('.pwdBox').animate({ top: '118' }, 0).animate({ left: '250', opacity: 1 }, 200);
     });
     // END group
 
@@ -136,7 +136,7 @@ CA.prototype = {
       $('input#duration').removeAttr('disabled');
       $('input#duration').focus();
       $('input#duration')[0].value = '';
-      $('.pwdBox').animate({ top: '114' }, 0).animate({ left: '250', opacity: 1 }, 200);
+      $('.pwdBox').animate({ top: '118' }, 0).animate({ left: '250', opacity: 1 }, 200);
     });
     $('#join').click(function () {
       $('.pwdBox .intro')[0].textContent = 'Input password to join a room.';
@@ -150,7 +150,7 @@ CA.prototype = {
       }
       $('input#duration').attr('disabled', 'disabled');
       $('input#first').focus();
-      $('.pwdBox').animate({ top: '114' }, 0).animate({ left: '250', opacity: 1 }, 200);
+      $('.pwdBox').animate({ top: '118' }, 0).animate({ left: '250', opacity: 1 }, 200);
     });
     // 鼠标操作
     $('#confirm').click(function (e) {
@@ -258,12 +258,13 @@ CA.prototype = {
 
 
     // BEGIN listen to controllers
-    $('.controllers').focusin(function (e) {
-      $('.controllers').css('background-color-color', '#ffffff50');
+    $('.controllers').click(function (e) {
+      $('.controllers').css('background-color', '#fff');
+      $('.editArea').focus();
       $('.editArea').css('color', $('.changeColor')[0].value);
     });
     $('.controllers').focusout(function (e) {
-      $('.controllers').css('background-color-color', '#ffffff00');
+      $('.controllers').css('background-color', '#eee');
     });
     // BEGIN emoji
     $('svg.emoji').click(function () {
@@ -421,7 +422,7 @@ CA.prototype = {
       setTimeout(function () {
         $('#alert').animate({ left: '250', opacity: 0 }, 200).animate({ top: '-999' }, 0);
       }, 1500);
-      this._displayMsgBox('isOld', 'User_' + searchContent);
+      this._displayMsgBox('isOld', 'User_' + name);
     }
   },
   _displayPwdBox: function () {
