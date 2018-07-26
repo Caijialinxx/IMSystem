@@ -63,6 +63,7 @@ dl li {
 
 /* BEGIN login */
 .loginWrapper {
+  flex-shrink: 0;
   margin: auto;
   padding: 40px 46px;
   background-color: #efefef;
@@ -212,6 +213,9 @@ dl li {
   margin: 6px 0 4px 0;
   padding: 6px;
   white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .alert .action > input {
   width: 75%;
@@ -223,7 +227,7 @@ dl li {
   border-left: 1px solid rgba(255, 255, 255, 0.3);
   background-color: transparent;
   padding-left: 4px;
-  box-sizing: border-box;
+  box-sizing: content-box;
 }
 /* END alert */
 /* BEGIN pwdBox */
@@ -485,16 +489,16 @@ a.fileContent.otherFile {
   flex-shrink: 0;
 }
 /* BEGIN toolsWrapper */
-.toolsWrapper > div {
+.controllers > .toolsWrapper > div {
   display: inline-block;
   width: 24px;
   height: 24px;
   margin: 2px 4px;
 }
-.toolsWrapper > div input {
+.controllers > .toolsWrapper > div input {
   display: none;
 }
-.toolsWrapper > div > label > svg {
+.controllers > .toolsWrapper > div > label > svg {
   cursor: pointer;
   width: 24px;
   height: 24px;
@@ -537,29 +541,29 @@ a.fileContent.otherFile {
 /* END emoji */
 /* END toolsWrapper */
 /* BEGIN editWrapper */
-.editWrapper {
+.controllers > .editWrapper {
   flex-shrink: 1;         /* 编辑区域高度溢出时，“缩小”此区域 */
   padding: 0 10px;
   overflow-y: auto;
   flex-grow: 1;
 }
-.editWrapper > pre {
+.controllers > .editWrapper > pre {
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-y: auto;
 }
 /* END editWrapper */
 /* BEGIN sendWrapper */
-.sendWrapper {
+.controllers > .sendWrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.sendWrapper span {
+.controllers > .sendWrapper span {
   color: #555;
   font-size: 13px;
 }
-.sendWrapper .sendBtn {
+.controllers > .sendWrapper .sendBtn {
   background-color: #eee;
   padding: 5px 10px;
   border-radius: 4px;
