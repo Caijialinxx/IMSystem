@@ -396,7 +396,7 @@ CA.prototype = {
     }
     else if (type === 'not friend') {
       $('#alert .status')[0].textContent = "Not your friend";
-      $('#alert .action').css('display', 'block');
+      $('#alert .action').css('display', 'flex');
       $('#alert input').removeAttr('disabled');
       $('#alert input')[0].value = "I'm " + $('#userName')[0].textContent;
       $('#alert button')[0].textContent = 'Add';
@@ -411,7 +411,7 @@ CA.prototype = {
     }
     else if (type === 'addReq') {
       $('#alert .status')[0].textContent = "Friend Request";
-      $('#alert .action').css('display', 'block');
+      $('#alert .action').css('display', 'flex');
       $('#alert input').attr('disabled', 'disabled');
       $('#alert input')[0].value = authentication;
       $('#alert button')[0].textContent = 'Accept';
@@ -619,8 +619,6 @@ function makeMsgBox(msgType, args) {
     msgToDisplay = document.createElement('div'),
     msgSender = document.createElement('p');
 
-  msgToDisplay.classList.add('clearfix');
-
   // 文本消息
   if (msgType === "text") {
     msgContent = document.createElement('pre');
@@ -635,7 +633,6 @@ function makeMsgBox(msgType, args) {
     msgToDisplay.classList.add('fileToDisplay');
     msgContent.setAttribute('href', '');
     msgContent.setAttribute('download', '');
-    // 非图片文件
     if (args[2].type.indexOf("image") > -1) {
       msgContent.classList.add('imgFile');
     }
@@ -661,11 +658,10 @@ function makeMsgBox(msgType, args) {
   }
   else {
     if (args[0] === "Me") {
-      msgToDisplay.style.textAlign = "right";
-      msgContent.style.float = "right";
+      msgToDisplay.style.alignItems = "flex-end";
     }
     else {
-      msgContent.style.float = "left";
+      msgToDisplay.style.alignItems = "flex-start";
     }
     msgSender.textContent = args[0] + ' ' + args[1];
   }
